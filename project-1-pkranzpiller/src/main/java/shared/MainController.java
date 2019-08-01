@@ -1,11 +1,11 @@
 package shared;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.annotation.sql.DataSourceDefinition;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import employee.Employee;
 import employee.EmployeeDao;
 import manager.Manager;
+import manager.ManagerDao;
 import request.Request;
 
 
@@ -37,25 +38,29 @@ public class MainController {
 		employeeCache = new EmployeeDao().getEmployees();
 	}
 	
-	
 	@POST
 	@Path("login")
-	@Consumes(MediaType.TEXT_HTML)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_HTML)
-	public String getLogin(@QueryParam("username") String username, @QueryParam("password") String password) {
+	public String getLogin(@FormParam("username") String username, @FormParam("password") String password) {
 //		System.out.println("rawr");
-		return ("POST: Username: " + username + " Password: " + password + " random user: " + employeeCache.get(0).getUsername());
+//		System.out.println("Got Username: " + username);
+		if(new EmployeeDao().authenticateEmployee(username, password)) {		//if authentication works for employee
+			return "employee";
+		}else if(new ManagerDao().authenticateManager(username, password)) {
+			return "manager";
+		}else
+			return "authentication failed";
 	}
+	
+	
+	
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String index() {
 		return "Welcome to the API: use   '/main/*'   where *= employee, manager, or resource";
 	}
-	
-	
-	
-	
-	
-	
+
+
 }

@@ -1,0 +1,39 @@
+.cleanForm {
+    width: 550px;
+}
+
+fieldset > label > input {
+    display: block;
+}
+input[type="checkbox"] {
+    display: inline;
+}
+label {
+    margin: 10px;
+    padding: 5px;
+}
+fieldset > label {
+    float: left;
+    width: 200px;
+}
+label:nth-child(2n+1) {
+    clear: both;
+}
+#gender, .tos, button {
+    clear: both;
+}
+.tos {
+    width: 400px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, 0.2);
+
+    padding: 5px;
+}
