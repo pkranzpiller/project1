@@ -1,6 +1,7 @@
 let login = [];
 let authenticated = false;
 let loginElement = document.querySelector('#login');
+let requests = [];
 
 let username;
 let password;
@@ -16,3 +17,13 @@ function onSubmit(){
 //	};
 //	xhr.send();
 //}
+
+//function generateTables(){
+//	let xhr = new HMLHttpRequest();
+//	xhr.open('get', 'api/main/getRequests');
+//	xhr.onload = function(){
+//		requests = JSON.parse(xhr.responseText);
+////		document.write(requests[0]);
+//	};
+//	xhr.send();
+//

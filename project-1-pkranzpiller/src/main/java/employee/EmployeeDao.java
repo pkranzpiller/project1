@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import shared.ConnectionUtil;
+import shared.User;
 
 
 public class EmployeeDao{
@@ -32,30 +33,49 @@ public class EmployeeDao{
 			}
 			con.close();
 			return employees;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("SQL Error: Couldn't get employees");
+			try {
+				con.close();
+			} catch (SQLException e1) {
+				return null;
+			}
 			return null;
 		}
 	}
 	
-	public boolean authenticateEmployee(String username, String password) {
+	public Employee authenticateEmployee(String username, String password){
 		Connection con = new ConnectionUtil().getConnection();
 		ResultSet results = null;
+		Employee emp = new Employee();
 		
 		try {
-			PreparedStatement ps = con.prepareStatement("select username, password from employee where username = ?");
+			PreparedStatement ps = con.prepareStatement("select username, password, firstname, lastname, id from employee where username = ?");
 			ps.setString(1, username);
 			results = ps.executeQuery();
 			results.next();
 			
 			if(username.equals(results.getString("username")) && password.equals(results.getString("password")) ){
-				return true;
+				emp.setFirstname(results.getString("firstname"));
+				emp.setLastname(results.getString("lastname"));
+				emp.setUsername(results.getString("username"));
+				emp.setId(results.getInt("id"));
+				emp.setType(User.Type.EMPLOYEE);
+				con.close();
+				return emp;
 			}else
-				return false;
-		} catch (SQLException e) {
-			System.out.println("Failed to authenticate user");
-			return false;
+				con.close();
+				return null;
+		} catch (Exception e) {
+			try {
+				con.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				return null;
+			}
+			e.printStackTrace();
+			return null;
 		}
 	}
 	

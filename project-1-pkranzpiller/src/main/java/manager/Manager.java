@@ -1,5 +1,9 @@
 package manager;
 
-public class Manager {
+import shared.User;
+
+public class Manager extends User{
+	
+	public Manager() {}
 
 }

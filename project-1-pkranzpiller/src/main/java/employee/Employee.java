@@ -3,7 +3,7 @@ package employee;
 import shared.User;
 
 public class Employee extends User{
-	Employee(){
+	public Employee(){
 		
 	}
 }

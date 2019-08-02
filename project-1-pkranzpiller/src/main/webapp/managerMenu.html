@@ -2,9 +2,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Manager Menu</title>
+<style>
+		.spacer{
+		max-width: 500px;
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		}
+	</style>
+<title>Management Menu</title>
 </head>
+<header>
+<img class="spacer" src="./images/revatureLogo.png">
+</header>
 <body>
-
+		<div onload="generateTables()">
+			
+		</div>
+		<br>
+		<form method="GET" action="api/main/logoutManager">
+			<button class="spacer" type="submit">Logout</button>
+		</form>
 </body>
+
+<script src='./js/main.js'></script>
 </html>

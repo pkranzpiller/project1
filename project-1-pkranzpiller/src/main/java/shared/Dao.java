@@ -1,19 +1,24 @@
-//package shared;
-//
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.util.ArrayList;
-//
-//import employee.Employee;
-//import manager.Manager;
-//
-//import shared.ConnectionUtil;															FEEL FREE TO DELETE ME
-//
-//
-//public abstract class Dao {
-//	
+package shared;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import employee.Employee;
+import manager.Manager;
+
+import shared.ConnectionUtil;
+
+
+public class Dao {
+	
+//	public User getUser() {
+//		Connection con = new ConnectionUtil().getConnection();
+//		ResultSet results = null;
+//	}
+	
 //	public ArrayList<?> getUserData(User user){
 //		
 //		Connection con = new ConnectionUtil().getConnection();
@@ -41,6 +46,6 @@
 //			return null;
 //		}
 //	}
-//
-//}
-//
+
+}
+

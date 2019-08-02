@@ -2,9 +2,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+		.spacer{
+		max-width: 500px;
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		}
+	</style>
 <title>Employee Menu</title>
 </head>
+<header>
+<img class="spacer" src="./images/revatureLogo.png">
+</header>
 <body>
-		employeeMenu!
+
+		<div>
+			<h2>Reimbursement Request Submission Form</h2>
+			<br>
+			<form method="post" action="api/main/upload" enctype="multipart/form-data"> 
+			<textarea rows="10" cols="70" name="description" placeholder="explain circumstances here" required></textarea>
+			<br>
+			Attachment: <input type="file" name="receipt" required>  <!-- add <multiple> field within input to enable multiple image attachments. Needs debugging though --> 
+			<br>
+			<input type="submit">
+			</form>
+		</div>
+		<br>
+		<form method="GET" action="api/main/logoutEmployee">
+			<button class="spacer" type="submit">Logout</button>
+		</form>
 </body>
 </html>

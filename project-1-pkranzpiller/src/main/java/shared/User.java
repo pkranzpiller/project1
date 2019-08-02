@@ -4,6 +4,16 @@ public class User {
 	
 	private int id;
 	private String username, firstname, lastname, password;
+	public static enum Type{EMPLOYEE, MANAGER, USER};
+	private Type type;
+	
+	public Type getType() {
+		return type;
+	}
+	
+	public void setType(Type t) {
+		this.type = t;
+	}
 	
 	public int getId() {
 		return id;

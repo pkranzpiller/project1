@@ -8,6 +8,9 @@ insert into manager(username, firstname, lastname, password) values('Overlord', 
 
 select * from employee;
 select * from manager;
+select * from requests;
+
+--delete from requests where id=2;
 
 drop table employee;
 drop table manager;
