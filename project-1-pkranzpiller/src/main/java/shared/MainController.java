@@ -130,8 +130,6 @@ public class MainController {
 	public String getRequests() {
 		String message;
 		requestCache = new RequestDao().getRequests();
-		JSONObject json = new JSONObject();
-//		json.put("id", "request");
 		JSONArray array = new JSONArray();
 		JSONObject item;
 		
@@ -145,7 +143,6 @@ public class MainController {
 			item.put("description", request.getDetails());
 			array.put(item);
 		}
-//		json.put("request", array);
 		message = array.toString();
 		return message;
 	}
