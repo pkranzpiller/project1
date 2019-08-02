@@ -9,21 +9,30 @@
 		margin-top: 10px;
 		margin-bottom: 10px;
 		}
-	</style>
+		
+		table, th, td{
+			border:1px solid black;
+		}
+</style>
 <title>Management Menu</title>
 </head>
 <header>
 <img class="spacer" src="./images/revatureLogo.png">
 </header>
-<body>
-		<div onload="generateTables()">
-			
-		</div>
-		<br>
-		<form method="GET" action="api/main/logoutManager">
-			<button class="spacer" type="submit">Logout</button>
-		</form>
-</body>
+<body onload="generateTables()">
 
+	<div id="data">
+	
+	</div>
+		
+		
+		
 <script src='./js/main.js'></script>
+</body>
+<br>
+<form method="GET" action="api/main/logoutManager">
+	<button class="spacer" type="submit">Logout</button>
+</form>
+
+
 </html>

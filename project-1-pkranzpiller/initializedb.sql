@@ -4,6 +4,7 @@ create table requests(id serial primary key, imageid text, employeeid int, appro
 
 insert into employee(username, firstname, lastname, password)  values('username', 'firstname', 'lastname', 'password');
 insert into employee(username, firstname, lastname, password) values('Knuckles', 'Knuckles', 'NotSonic', 'douknodeweh');
+insert into employee(username, firstname, lastname, password) values('Jim', 'Jimmeh', 'Johnson', 'password');
 insert into manager(username, firstname, lastname, password) values('Overlord', 'Your', 'Senpai', 'callmesenpai');
 
 select * from employee;

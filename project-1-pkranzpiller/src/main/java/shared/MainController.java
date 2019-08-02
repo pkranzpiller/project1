@@ -21,6 +21,8 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import employee.Employee;
 import employee.EmployeeDao;
@@ -122,11 +124,31 @@ public class MainController {
 		}
 	}
 	
-	
-	
-	
-	
-	
+	@POST
+	@Path("getRequests")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getRequests() {
+		String message;
+		requestCache = new RequestDao().getRequests();
+		JSONObject json = new JSONObject();
+//		json.put("id", "request");
+		JSONArray array = new JSONArray();
+		JSONObject item;
+		
+		for(Request request : requestCache) {
+			item = new JSONObject();
+			item.put("id", request.getId());
+			item.put("imageid", request.getImageid());
+			item.put("employeeid", request.getEmployeeid());
+			item.put("approval", request.getApproval());
+			item.put("managerid", request.getManagerid());
+			item.put("description", request.getDetails());
+			array.put(item);
+		}
+//		json.put("request", array);
+		message = array.toString();
+		return message;
+	}
 	
 	
 	@GET
