@@ -27,3 +27,7 @@ function onSubmit(){
 //	};
 //	xhr.send();
 //
+
+function generateTables(){
+	document.append.write("rawr");
+}

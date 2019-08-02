@@ -19,19 +19,21 @@ public class ManagerDao {
 			PreparedStatement ps = con.prepareStatement("select username, password,firstname, lastname, id from manager where username = ?");
 			ps.setString(1, username);
 			results = ps.executeQuery();
-			results.next();
 			
-			if(username.equals(results.getString("username")) && password.equals(results.getString("password")) ){
-				manager.setFirstname(results.getString("firstname"));
-				manager.setLastname(results.getString("lastname"));
-				manager.setUsername(results.getString("username"));
-				manager.setId(results.getInt("id"));
-				manager.setType(User.Type.MANAGER);
-				con.close();
-				return manager;
-			}else
-				con.close();
-				return null;
+			
+			if(results.next()) {
+				if(username.equals(results.getString("username")) && password.equals(results.getString("password")) ){
+					manager.setFirstname(results.getString("firstname"));
+					manager.setLastname(results.getString("lastname"));
+					manager.setUsername(results.getString("username"));
+					manager.setId(results.getInt("id"));
+					manager.setType(User.Type.MANAGER);
+					con.close();
+					return manager;
+				}
+			}
+			con.close();
+			return null;
 		} catch (Exception e) {
 			try {
 				con.close();

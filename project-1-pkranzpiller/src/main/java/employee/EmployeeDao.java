@@ -54,19 +54,20 @@ public class EmployeeDao{
 			PreparedStatement ps = con.prepareStatement("select username, password, firstname, lastname, id from employee where username = ?");
 			ps.setString(1, username);
 			results = ps.executeQuery();
-			results.next();
 			
-			if(username.equals(results.getString("username")) && password.equals(results.getString("password")) ){
-				emp.setFirstname(results.getString("firstname"));
-				emp.setLastname(results.getString("lastname"));
-				emp.setUsername(results.getString("username"));
-				emp.setId(results.getInt("id"));
-				emp.setType(User.Type.EMPLOYEE);
-				con.close();
-				return emp;
-			}else
-				con.close();
-				return null;
+			if(results.next()) {
+				if(username.equals(results.getString("username")) && password.equals(results.getString("password")) ){
+					emp.setFirstname(results.getString("firstname"));
+					emp.setLastname(results.getString("lastname"));
+					emp.setUsername(results.getString("username"));
+					emp.setId(results.getInt("id"));
+					emp.setType(User.Type.EMPLOYEE);
+					con.close();
+					return emp;
+				}
+			}
+			con.close();
+			return null;
 		} catch (Exception e) {
 			try {
 				con.close();
