@@ -1,3 +1,15 @@
+function approve(){
+	console.log("approve called");
+}
+	
+function deny(){
+	console.log("deny called");
+}
+
+
+
+
+
 function generateTables(){
 	const Http = new XMLHttpRequest();
 	const url = 'http://localhost:8080/project-1-pkranzpiller/api/main/getRequests';
@@ -25,7 +37,12 @@ function generateTables(){
 			        }
 			    }
 			}
-
+			
+			
+			if(myBooks === undefined || myBooks.length === 0)		//if we have stuff in the table
+				col.push("empty table");							//show empty table row if no requests are stored
+			else
+				col.push("action")									//will use this to add approval/denial
 			// CREATE DYNAMIC TABLE.
 			var table = document.createElement("table");
 
@@ -46,11 +63,22 @@ function generateTables(){
 
 			    for (var j = 0; j < col.length; j++) {
 		    		var tabCell = tr.insertCell(-1);
-		    		if (col[j] === "image"){
-		    			let str1 = '<img src="http://localhost:8080/project-1-pkranzpiller/api/main/getImage?imageid='
+		    		if(col[j] === "image"){			//to actually load images
+		    			let str1 = '<img height="125" width="125" src="http://localhost:8080/project-1-pkranzpiller/api/main/getImage?imageid='
 		    			let str2 = '">'
 		    			myBooks[i][col[j]] = str1 + myBooks[i][col[j]] + str2;
-			    }
+		    		}
+		    		if(col[j] === "action" && myBooks[i][col[1]] === "pending"){   // 
+//		    			console.log(myBooks[i][col[1]]);
+		    			var id = myBooks[i][col[3]];
+//		    			console.log("id is: " + id);
+		    			var btn = '<button onclick="approve()" id = ' + id + '>Approve</button> <button onclick="deny()" id = ' + (id*(-1)) +'>Deny</button>';
+//		    			console.log("deny id is: " + (id*-1));
+		    			myBooks[i][col[j]] = btn;
+		    		}
+		    		
+		    		
+		    		
 			        tabCell.innerHTML = myBooks[i][col[j]];	
 			    	
 			    	
@@ -68,5 +96,7 @@ function generateTables(){
 		 	}
 		
 	}
+	
+	
 	
 }

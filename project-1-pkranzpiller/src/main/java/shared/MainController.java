@@ -118,7 +118,7 @@ public class MainController {
 		ByteArrayOutputStream baos;
 		try {
 			bimg = ImageIO.read(new File(("/home/patrick/git/project1/project-1-pkranzpiller/src/main/webapp/images/" + imageid)));
-			bimg = resize(bimg, 100, 100);
+//			bimg = resize(bimg, 125, 125);
 			baos = new ByteArrayOutputStream();
 			ImageIO.write(bimg, type, baos);
 		} catch (IOException e) {
@@ -140,8 +140,6 @@ public class MainController {
 		try {
 			multifiles = sf.parseRequest(request);
 			Request req = new Request();
-			System.out.println(currentEmployee.toString());
-			System.out.println(currentEmployee.getFirstname());
 			req.setEmployeeid(currentEmployee.getId());
 			for(FileItem file : multifiles) {
 				if(file.getFieldName().equals("receipt")) {
@@ -153,6 +151,7 @@ public class MainController {
 				//TODO check for same names. Maybe even generate new names for image files
 				//TODO enable the addition of a request with multiple images
 			}
+			req.setManagerid(-1);
 			new RequestDao().insertRequest(req);
 			System.out.println("File uploaded");
 		} catch (Exception e) {
@@ -196,16 +195,16 @@ public class MainController {
 	
 	
 	
-	private static BufferedImage resize(BufferedImage img, int newW, int newH) { 
-	    Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
-	    BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
-
-	    Graphics2D g2d = dimg.createGraphics();
-	    g2d.drawImage(tmp, 0, 0, null);
-	    g2d.dispose();
-
-	    return dimg;
-	}  
+//	private static BufferedImage resize(BufferedImage img, int newW, int newH) { 
+//	    Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+//	    BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+//
+//	    Graphics2D g2d = dimg.createGraphics();
+//	    g2d.drawImage(tmp, 0, 0, null);
+//	    g2d.dispose();
+//
+//	    return dimg;
+//	}  
 
 
 }
