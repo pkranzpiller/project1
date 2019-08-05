@@ -103,7 +103,7 @@ public class MainController {
 		}
 	}
 	
-	@POST
+	@GET
 	@Path("getImage")
 	@Consumes(MediaType.TEXT_HTML)
 	@Produces({"image/png", "image/jpeg"})
@@ -118,7 +118,7 @@ public class MainController {
 		ByteArrayOutputStream baos;
 		try {
 			bimg = ImageIO.read(new File(("/home/patrick/git/project1/project-1-pkranzpiller/src/main/webapp/images/" + imageid)));
-//			bimg = resize(bimg, 10, 10);
+			bimg = resize(bimg, 100, 100);
 			baos = new ByteArrayOutputStream();
 			ImageIO.write(bimg, type, baos);
 		} catch (IOException e) {

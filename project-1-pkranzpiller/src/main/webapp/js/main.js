@@ -46,7 +46,11 @@ function generateTables(){
 
 			    for (var j = 0; j < col.length; j++) {
 		    		var tabCell = tr.insertCell(-1);
-		    		console.log(myBooks[i][col[j]] + "imagestuff");
+		    		if (col[j] === "image"){
+		    			let str1 = '<img src="http://localhost:8080/project-1-pkranzpiller/api/main/getImage?imageid='
+		    			let str2 = '">'
+		    			myBooks[i][col[j]] = str1 + myBooks[i][col[j]] + str2;
+			    }
 			        tabCell.innerHTML = myBooks[i][col[j]];	
 			    	
 			    	
@@ -66,9 +70,3 @@ function generateTables(){
 	}
 	
 }
-
-
-
-
-
-
