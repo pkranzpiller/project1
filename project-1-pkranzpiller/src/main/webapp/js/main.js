@@ -45,8 +45,12 @@ function generateTables(){
 			    tr = table.insertRow(-1);
 
 			    for (var j = 0; j < col.length; j++) {
-			        var tabCell = tr.insertCell(-1);
-			        tabCell.innerHTML = myBooks[i][col[j]];
+		    		var tabCell = tr.insertCell(-1);
+		    		console.log(myBooks[i][col[j]] + "imagestuff");
+			        tabCell.innerHTML = myBooks[i][col[j]];	
+			    	
+			    	
+			        
 			    }
 			}
 
